@@ -47,9 +47,8 @@ jobs:
 
       - name: Make trusted root
         run: |
-          curl http://localhost:5555/api/v1/rootCert > root.pem
           cosign trusted-root create \
-            --fulcio="url=http://localhost:5555,certificate-chain=root.pem" \
+            --fulcio="url=http://localhost:5555,certificate-chain=dev/sigstore/fulcio/config/fulcio-root/root.pem" \
             --ctfe="url=http://localhost:6962,public-key=dev/sigstore/fulcio/config/ctfe/pubkey.pem,start-time=2025-11-25T21:41:42+00:00" \
             --out=trusted-root.json
 
